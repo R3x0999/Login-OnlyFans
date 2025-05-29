@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - FansPlatform</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f1f1f1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      background: white;
+      padding: 40px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .input-group {
+      margin-bottom: 16px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .login-button {
+      width: 100%;
+      padding: 12px;
+      background-color: #00aff0;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .login-button:hover {
+      background-color: #009edb;
+    }
+
+    .options {
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    .options a {
+      color: #00aff0;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .divider {
+      margin: 24px 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 40%;
+      height: 1px;
+      background: #ccc;
+    }
+
+    .divider::before {
+      left: 0;
+    }
+
+    .divider::after {
+      right: 0;
+    }
+
+    .divider span {
+      background: white;
+      padding: 0 10px;
+      color: #999;
+    }
+
+    .social-login {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .social-button {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .google { background-color: white; }
+    .twitter { background-color: #1da1f2; color: white; }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Sign In</h2>
+    <form id="loginForm">
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter email" required />
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter password" required />
+      </div>
+      <button type="submit" class="login-button">Log In</button>
+    </form>
+
+    <div class="options">
+      <a href="#">Forgot password?</a>
+    </div>
+
+    <div class="divider"><span>OR</span></div>
+
+    <div class="social-login">
+      <div class="social-button google">Continue with Google</div>
+      <div class="social-button twitter">Continue with Twitter</div>
+    </div>
+
+    <div class="options" style="margin-top: 20px;">
+      <p>Don't have an account? <a href="#">Sign up for FansPlatform</a></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = {
+        email: formData.get('email'),
+        password: formData.get('password')
+      };
+
+      await fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      alert('Login submitted.');
+    });
+  </script>
+</body>
+</html>
+
+  
