@@ -1,4 +1,5 @@
 // server.js
+require('dotenv').config();
 const express = require('express');
 const nodemailer = require('nodemailer');
 
@@ -15,8 +16,8 @@ app.post('/login', async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'umehvictor511@gmail.com',
-      pass: 'lbuipfzehkzgabin'
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
     }
   });
 
